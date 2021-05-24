@@ -288,7 +288,6 @@ useCC : {auto c : Ref Ctxt Defs} ->
         String -> FC -> List String -> List (Name, CFType) -> CFType -> Core (String, String)
 useCC appdir fc ccs args ret
     = case parseCC ["scheme,chez", "scheme", "C__collect_safe", "C"] ccs of
-           Nothing => throw (NoForeignCC fc)
            Just ("scheme,chez", [sfn]) =>
                do body <- schemeCall fc sfn (map fst args) ret
                   pure ("", body)
@@ -303,7 +302,7 @@ useCC appdir fc ccs args ret
              cCall appdir fc cfn clib args ret False
            Just ("C", [cfn, clib, chdr]) =>
              cCall appdir fc cfn clib args ret False
-           _ => throw (NoForeignCC fc)
+           _ => throw (NoForeignCC fc ccs)
 
 -- For every foreign arg type, return a name, and whether to pass it to the
 -- foreign call (we don't pass '%World')

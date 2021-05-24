@@ -146,7 +146,8 @@ data Error : Type where
      ForceNeeded : Error
      InternalError : String -> Error
      UserError : String -> Error
-     NoForeignCC : FC -> Error
+     ||| Contains list of specifiers for which foreign call cannot be resolved
+     NoForeignCC : FC -> List String -> Error
      BadMultiline : FC -> String -> Error
 
      InType : FC -> Name -> Error -> Error
@@ -318,8 +319,8 @@ Show Error where
   show ForceNeeded = "Internal error when resolving implicit laziness"
   show (InternalError str) = "INTERNAL ERROR: " ++ str
   show (UserError str) = "Error: " ++ str
-  show (NoForeignCC fc) = show fc ++
-       ":The given specifier was not accepted by any available backend."
+  show (NoForeignCC fc specs) = show fc ++
+       ":The given specifier " ++ show specs ++ " was not accepted by any available backend."
   show (BadMultiline fc str) = "Invalid multiline string: " ++ str
 
   show (InType fc n err)
@@ -402,7 +403,7 @@ getErrorLoc (CyclicImports _) = Nothing
 getErrorLoc ForceNeeded = Nothing
 getErrorLoc (InternalError _) = Nothing
 getErrorLoc (UserError _) = Nothing
-getErrorLoc (NoForeignCC loc) = Just loc
+getErrorLoc (NoForeignCC loc _) = Just loc
 getErrorLoc (BadMultiline loc _) = Just loc
 getErrorLoc (InType _ _ err) = getErrorLoc err
 getErrorLoc (InCon _ _ err) = getErrorLoc err
