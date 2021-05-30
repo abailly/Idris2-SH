@@ -299,7 +299,7 @@ codegenTests = MkTestPool "Code generation" []
 
 -- tests Idris2 API library
 idrisApiLibraryTests : TestPool
-idrisApiLibraryTests = MkTestPool "Idris2 API library" []
+idrisApiLibraryTests = MkTestPool "Idris2 API library" [Chez]
   [ -- Version parsing and showing
     "version001"
   , "version002"
