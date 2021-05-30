@@ -297,6 +297,13 @@ codegenTests = MkTestPool "Code generation" []
   , "builtin001"
   ]
 
+-- tests Idris2 API library
+idrisApiLibraryTests : TestPool
+idrisApiLibraryTests = MkTestPool "Idris2 API library" []
+  [ -- Version parsing and showing
+    "version001"
+  ]
+
 main : IO ()
 main = runner
   [ testPaths "ttimp" ttimpTests
@@ -326,6 +333,7 @@ main = runner
   , testPaths "node" nodeTests
   , testPaths "templates" templateTests
   , testPaths "codegen" codegenTests
+  , testPaths "idris2api" idrisApiLibraryTests
   ] where
 
     testPaths : String -> TestPool -> TestPool

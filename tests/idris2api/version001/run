@@ -1,0 +1,4 @@
+$1 --no-color --console-width 0 --no-banner -x main -p idris2 VersionTest.idr > output
+
+rm -fr build/
+
