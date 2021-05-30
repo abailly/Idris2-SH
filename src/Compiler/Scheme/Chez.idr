@@ -59,7 +59,7 @@ chezVersion chez = do
 
 unsupportedCallingConvention : Maybe Version -> Bool
 unsupportedCallingConvention Nothing = True
-unsupportedCallingConvention (Just version) = version >= MkVersion (9,5,0) Nothing
+unsupportedCallingConvention (Just version) = version < MkVersion (9,5,0) Nothing
 
 -- Given the chez compiler directives, return a list of pairs of:
 --   - the library file name
