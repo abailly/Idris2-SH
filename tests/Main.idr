@@ -302,6 +302,7 @@ idrisApiLibraryTests : TestPool
 idrisApiLibraryTests = MkTestPool "Idris2 API library" []
   [ -- Version parsing and showing
     "version001"
+  , "version002"
   ]
 
 main : IO ()
