@@ -73,7 +73,7 @@ modules =
     Idris.Desugar.Mutual,
     Idris.Env,
     Idris.Doc.HTML,
-    Idris.DocString,
+    Idris.Doc.String,
     Idris.Driver,
     Idris.Error,
     Idris.ModTree,
@@ -156,7 +156,6 @@ modules =
     Libraries.Text.Token,
 
     Libraries.Utils.Binary,
-    Libraries.Utils.Either,
     Libraries.Utils.Hex,
     Libraries.Utils.Octal,
     Libraries.Utils.Path,
